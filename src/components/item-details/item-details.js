@@ -6,7 +6,6 @@ import './item-details.css';
 
 export default class ItemDetails extends Component {
 
-  swapiService = new SwapiService();
   state = {
     item: null,
     loading: false,
@@ -61,7 +60,7 @@ export default class ItemDetails extends Component {
 }
 
 const ItemView = ({ item, image, children }) => {
-  const { id, name, gender, birthYear, eyeColor } = item;
+  const { name } = item;
 
   return (
     <>
