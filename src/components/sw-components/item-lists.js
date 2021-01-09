@@ -21,16 +21,26 @@ const withChildFunction = (Wrapped, fn) => { // HOC
     };
 };
 
-const ListWithChildren = withChildFunction(
-    ItemList,
-    ({ name }) => <span>{name}</span> // render-function
-);
+const renderPerson = ({ name, birthYear }) => <span>{name} ({ birthYear })</span>;
 
-const PersonList = withData(ListWithChildren, getAllPeople);
+const renderName = ({ name }) => <span>{name}</span>;
 
-const PlanetList = withData(ListWithChildren, getAllPlanets);
+// const ListWithChildren = withChildFunction(
+//     ItemList,
+//     ({ name }) => <span>{name}</span> // render-function
+// );
 
-const StarshipList = withData(ListWithChildren, getAllStarships);
+const PersonList = withData(
+                    withChildFunction(ItemList, renderPerson),
+                    getAllPeople);
+
+const PlanetList = withData(
+                    withChildFunction(ItemList, renderName),
+                    getAllPlanets);
+
+const StarshipList = withData(
+                    withChildFunction(ItemList, renderName),
+                    getAllStarships);
 
 export {
     PersonList,
