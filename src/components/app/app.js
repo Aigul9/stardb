@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'; 
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'; 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ErrorBoundary from '../error-boundary';
-import SwapiService from "../../services/swapi-service";
-import DummmySwapiService from "../../services/dummy-swapi-service";
+import SwapiService from '../../services/swapi-service';
+import DummmySwapiService from '../../services/dummy-swapi-service';
 import {
   PeoplePage,
   PlanetPage,
@@ -59,19 +59,20 @@ export default class App extends Component {
     const { isLoggedIn } = this.state;
 
     return (
-        <ErrorBoundary>
-          <SwapiServiceProvider value={this.state.swapiService}>
-            <Router>
-              <div className="stardb-app">
-              <Header onServiceChange={this.onServiceChange}/>
-                { planet }
+      <ErrorBoundary>
+        <SwapiServiceProvider value={this.state.swapiService}>
+          <Router>
+            <div className="stardb-app">
+            <Header onServiceChange={this.onServiceChange}/>
+              { planet }
 
-                <button
-                  className="toggle-planet btn btn-warning btn-lg"
-                  onClick={this.toggleRandomPlanet}>
-                  Toggle Random Planet
-                </button>
+              <button
+                className="toggle-planet btn btn-warning btn-lg"
+                onClick={this.toggleRandomPlanet}>
+                Toggle Random Planet
+              </button>
 
+              <Switch>
                 <Route
                   path="/"
                   render={() => <h2>Welcome to StarDB</h2>}
@@ -91,7 +92,9 @@ export default class App extends Component {
                 <Route
                   path="/secret"
                   render={() => <SecretPage isLoggedIn={isLoggedIn}/>}/>
-                
+                <Route render={() => <h3>404 - Page not found</h3>}/>
+                {/* <Redirect to="/"/> */}
+              </Switch>
             </div>
           </Router>
         </SwapiServiceProvider>
