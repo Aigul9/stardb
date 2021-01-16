@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom'; 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ErrorBoundary from '../error-boundary';
@@ -44,21 +44,27 @@ export default class App extends Component {
     return (
         <ErrorBoundary>
           <SwapiServiceProvider value={this.state.swapiService}>
-            <div className="stardb-app">
-            <Header onServiceChange={this.onServiceChange}/>
-              { planet }
+            <Router>
+              <div className="stardb-app">
+              <Header onServiceChange={this.onServiceChange}/>
+                { planet }
 
-              <button
-                className="toggle-planet btn btn-warning btn-lg"
-                onClick={this.toggleRandomPlanet}>
-                Toggle Random Planet
-              </button>
+                <button
+                  className="toggle-planet btn btn-warning btn-lg"
+                  onClick={this.toggleRandomPlanet}>
+                  Toggle Random Planet
+                </button>
 
-              <PeoplePage/>
-              <PlanetPage/>
-              <StarshipPage/>
-              
-          </div>
+                <Route
+                  path="/"
+                  render={() => <h2>Welcome to StarDB</h2>}
+                  exact/>
+                <Route path="/people" component={PeoplePage}/>
+                <Route path="/planets" component={PlanetPage}/>
+                <Route path="/starships" component={StarshipPage}/>
+                
+            </div>
+          </Router>
         </SwapiServiceProvider>
       </ErrorBoundary>
     );
