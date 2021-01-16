@@ -15,9 +15,16 @@ export default class RandomPlanet extends Component {
     error: false
   };
 
+  // static is only for classes
+  // null wouldn't count as default props
+  static defaultProps = {
+    updateInterval: 10000
+  };
+
   componentDidMount() {
+    const { updateInterval } = this.props;
     this.updatePlanet();
-    this.interval = setInterval(this.updatePlanet, 150000);
+    this.interval = setInterval(this.updatePlanet, updateInterval);
   }
 
   componentWillUnmount() {
@@ -54,6 +61,11 @@ export default class RandomPlanet extends Component {
     );
   }
 }
+
+// for functions or classes
+// RandomPlanet.defaultProps = {
+//   updateInterval: 10000
+// };
 
 const PlanetView = ({ planet }) => {
   const { id, name, population, rotationPeriod, diameter } = planet;
