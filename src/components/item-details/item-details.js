@@ -67,7 +67,7 @@ const ItemView = ({ item, image, children }) => {
     <>
       <img className="person-image"
         src={image}
-        alt="person details"/>
+        alt="no photo"/>
 
       <div className="card-body">
         <h4>{name}</h4>

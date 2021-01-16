@@ -10,6 +10,8 @@ import { PeoplePage, PlanetPage, StarshipPage } from '../pages';
 import { SwapiServiceProvider } from '../swapi-service-context';
 
 import './app.css';
+import './bootstrap.min.css';
+import { StarshipDetails } from '../sw-components';
 
 export default class App extends Component {
 
@@ -61,7 +63,13 @@ export default class App extends Component {
                   exact/>
                 <Route path="/people" component={PeoplePage}/>
                 <Route path="/planets" component={PlanetPage}/>
-                <Route path="/starships" component={StarshipPage}/>
+                <Route path="/starships" component={StarshipPage} exact/>
+                <Route path="/starships/:id" render={({ match }, location, history) =>{
+                  console.log("m", match);
+                  console.log("l", location);
+                  console.log("h", history);
+                  return <StarshipDetails itemId={match.params.id}/>
+                }}/>
                 
             </div>
           </Router>
