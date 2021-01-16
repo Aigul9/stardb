@@ -32,9 +32,9 @@ const mapPlanetMethodsToProps = (swapiService) => {
     };
 };
 
-const mapSharshipMethodsToProps = (swapiService) => {
+const mapStarshipMethodsToProps = (swapiService) => {
     return {
-        getData: swapiService.getAllSharships
+        getData: swapiService.getAllStarships
     };
 };
 
@@ -48,10 +48,10 @@ const PlanetList = withSwapiService(
 
 const StarshipList = withSwapiService(
     withData(withChildFunction(ItemList, renderName)),
-    mapSharshipMethodsToProps);
+    mapStarshipMethodsToProps);
 
 export {
     PersonList,
     PlanetList,
     StarshipList
-}
+};

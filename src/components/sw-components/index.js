@@ -15,4 +15,4 @@ export {
     PersonDetails,
     PlanetDetails,
     StarshipDetails
-}
+};

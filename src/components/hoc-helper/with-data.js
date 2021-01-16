@@ -9,7 +9,16 @@ const withData = (View) => {
       };
     
       componentDidMount() {
-    
+        this.update();
+      };
+
+      componentDidUpdate(prevProps) {
+        if (this.props.getData !== prevProps.getData) {
+          this.update();
+        }
+      }
+
+      update() {
         this.props.getData() // because it exists in context
           .then(data => {
             this.setState({ data });
