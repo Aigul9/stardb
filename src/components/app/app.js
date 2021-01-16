@@ -38,15 +38,6 @@ export default class App extends Component {
   render() {
     const planet = this.state.showRandomPlanet ? <RandomPlanet/> : null;
 
-    const {
-      getPerson,
-      getPlanet,
-      getStarship,
-      getPersonImage,
-      getPlanetImage,
-      getStarshipImage
-    } = this.swapiService;
-
     return (
         <ErrorBoundary>
           <SwapiServiceProvider value={this.swapiService}>
